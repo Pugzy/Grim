@@ -216,7 +216,8 @@ public class MovementCheckRunner extends Check implements PositionCheck {
                 // Server always teleports the player when they eject anyways,
                 // so just let the player control where they eject within reason, they get set back anyways
                 if (new Vector(player.lastX, player.lastY, player.lastZ).distance(new Vector(player.x, player.y, player.z)) > 3) {
-                    player.getSetbackTeleportUtil().executeForceResync(); // Too far! (I think this value is sane)
+                    // Breaks when boat crashes
+                    // player.getSetbackTeleportUtil().executeForceResync(); // Too far! (I think this value is sane)
                 }
 
                 handleTeleport(update);
