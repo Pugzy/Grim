@@ -192,7 +192,7 @@ public class CheckManager {
                 }
             }
             if (!packetChecks.isEmpty()) {
-                typeCheckMap.put(packetType, Collections.unmodifiableList(packetChecks));
+                typeCheckMap.put(packetType, packetChecks);
             } else {
                 typeCheckMap.put(packetType, Collections.emptyList());
             }
