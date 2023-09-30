@@ -7,6 +7,10 @@ import ac.grim.grimac.utils.math.GrimMath;
 import com.github.retrooper.packetevents.event.PacketSendEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.server.*;
+import com.google.common.collect.Lists;
+
+import java.util.EnumSet;
+import java.util.Set;
 
 public class PacketWorldBorder extends Check implements PacketCheck {
     double centerX;
@@ -78,6 +82,17 @@ public class PacketWorldBorder extends Check implements PacketCheck {
             WrapperPlayWorldBorderLerpSize size = new WrapperPlayWorldBorderLerpSize(event);
             setLerp(size.getOldDiameter(), size.getNewDiameter(), size.getSpeed());
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Server> typesCheckedOnSend() {
+        return EnumSet.of(
+            PacketType.Play.Server.WORLD_BORDER,
+            PacketType.Play.Server.INITIALIZE_WORLD_BORDER,
+            PacketType.Play.Server.WORLD_BORDER_CENTER,
+            PacketType.Play.Server.WORLD_BORDER_SIZE,
+            PacketType.Play.Server.WORLD_BORDER_LERP_SIZE
+        );
     }
 
     private void setCenter(double x, double z) {

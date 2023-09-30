@@ -21,10 +21,14 @@ import com.github.retrooper.packetevents.protocol.potion.PotionType;
 import com.github.retrooper.packetevents.util.Vector3d;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientPlayerFlying;
 import com.github.retrooper.packetevents.wrapper.play.server.*;
+import com.google.common.collect.Lists;
 import io.github.retrooper.packetevents.util.viaversion.ViaVersionUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 public class PacketEntityReplication extends Check implements PacketCheck {
     private boolean hasSentPreWavePacket = true;
@@ -307,6 +311,32 @@ public class PacketEntityReplication extends Check implements PacketCheck {
                 }
             });
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Server> typesCheckedOnSend() {
+        return EnumSet.copyOf(Lists.newArrayList(
+            PacketType.Play.Server.PING,
+            PacketType.Play.Server.WINDOW_CONFIRMATION,
+            PacketType.Play.Server.SPAWN_LIVING_ENTITY,
+            PacketType.Play.Server.SPAWN_ENTITY,
+            PacketType.Play.Server.SPAWN_PLAYER,
+            PacketType.Play.Server.ENTITY_RELATIVE_MOVE,
+            PacketType.Play.Server.ENTITY_RELATIVE_MOVE_AND_ROTATION,
+            PacketType.Play.Server.ENTITY_TELEPORT,
+            PacketType.Play.Server.ENTITY_ROTATION,
+            PacketType.Play.Server.ENTITY_METADATA,
+            PacketType.Play.Server.ENTITY_EFFECT,
+            PacketType.Play.Server.REMOVE_ENTITY_EFFECT,
+            PacketType.Play.Server.UPDATE_ATTRIBUTES,
+            PacketType.Play.Server.ENTITY_STATUS,
+            PacketType.Play.Server.SET_SLOT,
+            PacketType.Play.Server.WINDOW_ITEMS,
+            PacketType.Play.Server.OPEN_WINDOW,
+            PacketType.Play.Server.SET_PASSENGERS,
+            PacketType.Play.Server.ATTACH_ENTITY,
+            PacketType.Play.Server.DESTROY_ENTITIES
+        ));
     }
 
     private void handleMountVehicle(PacketSendEvent event, int vehicleID, int[] passengers) {

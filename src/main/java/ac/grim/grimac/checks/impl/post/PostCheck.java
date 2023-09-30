@@ -19,8 +19,10 @@ import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerEn
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import static com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Client.*;
 
@@ -64,6 +66,11 @@ public class PostCheck extends Check implements PacketCheck, PostPredictionCheck
                 }
             }
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Server> typesCheckedOnSend() {
+        return Collections.singleton(PacketType.Play.Server.ENTITY_ANIMATION);
     }
 
     @Override

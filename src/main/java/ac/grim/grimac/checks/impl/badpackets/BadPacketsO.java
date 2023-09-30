@@ -10,9 +10,13 @@ import com.github.retrooper.packetevents.event.PacketSendEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientKeepAlive;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerKeepAlive;
+import com.google.common.collect.Lists;
 
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 @CheckData(name = "BadPacketsO")
 public class BadPacketsO extends Check implements PacketCheck {
@@ -28,6 +32,11 @@ public class BadPacketsO extends Check implements PacketCheck {
             WrapperPlayServerKeepAlive packet = new WrapperPlayServerKeepAlive(event);
             keepaliveMap.add(new Pair<>(packet.getId(), System.nanoTime()));
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Server> typesCheckedOnSend() {
+        return Collections.singleton(PacketType.Play.Server.KEEP_ALIVE);
     }
 
     @Override

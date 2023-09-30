@@ -7,7 +7,11 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientPlayerFlying;
+import com.google.common.collect.Lists;
 import lombok.Getter;
+
+import java.util.EnumSet;
+import java.util.Set;
 
 @Getter
 public class ActionManager extends Check implements PacketCheck {
@@ -31,6 +35,17 @@ public class ActionManager extends Check implements PacketCheck {
             player.totalFlyingPacketsSent++;
             attacking = false;
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Client> typesCheckedOnReceive() {
+        return EnumSet.of(
+            PacketType.Play.Client.INTERACT_ENTITY,
+            PacketType.Play.Client.PLAYER_FLYING,
+            PacketType.Play.Client.PLAYER_POSITION,
+            PacketType.Play.Client.PLAYER_ROTATION,
+            PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION
+        );
     }
 
     public boolean hasAttackedSince(long time) {

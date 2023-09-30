@@ -25,6 +25,7 @@ import com.github.retrooper.packetevents.protocol.player.GameMode;
 import com.github.retrooper.packetevents.protocol.teleport.RelativeFlag;
 import com.github.retrooper.packetevents.util.Vector3d;
 import com.github.retrooper.packetevents.wrapper.play.server.*;
+import com.google.common.collect.Queues;
 import io.github.retrooper.packetevents.util.FoliaCompatUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,12 +37,14 @@ import org.bukkit.util.Vector;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class SetbackTeleportUtil extends Check implements PostPredictionCheck {
     // Sync to netty
-    public final ConcurrentLinkedQueue<TeleportData> pendingTeleports = new ConcurrentLinkedQueue<>();
+    public final Queue<TeleportData> pendingTeleports = Queues.synchronizedQueue(Queues.newArrayDeque());
     // Sync to netty, a player MUST accept a teleport to spawn into the world
     // A teleport is used to end the loading screen.  Some cheats pretend to never end the loading screen
     // in an attempt to disable the anticheat.  Be careful.

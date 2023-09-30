@@ -27,11 +27,14 @@ import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerOp
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerOpenWindow;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerSetSlot;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerWindowItems;
+import com.google.common.collect.Lists;
 import io.github.retrooper.packetevents.util.SpigotConversionUtil;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 // Updated to support modern 1.17 protocol
 public class CompensatedInventory extends Check implements PacketCheck {
@@ -469,5 +472,16 @@ public class CompensatedInventory extends Check implements PacketCheck {
                 }
             });
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Server> typesCheckedOnSend() {
+        return EnumSet.of(
+            PacketType.Play.Server.OPEN_WINDOW,
+            PacketType.Play.Server.OPEN_HORSE_WINDOW,
+            PacketType.Play.Server.CLOSE_WINDOW,
+            PacketType.Play.Server.WINDOW_ITEMS,
+            PacketType.Play.Server.SET_SLOT
+        );
     }
 }

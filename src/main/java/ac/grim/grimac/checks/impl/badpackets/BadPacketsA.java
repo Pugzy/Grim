@@ -8,6 +8,9 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientHeldItemChange;
 
+import java.util.Collections;
+import java.util.Set;
+
 @CheckData(name = "BadPacketsA")
 public class BadPacketsA extends Check implements PacketCheck {
     int lastSlot = -1;
@@ -29,5 +32,10 @@ public class BadPacketsA extends Check implements PacketCheck {
 
             lastSlot = packet.getSlot();
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Client> typesCheckedOnReceive() {
+        return Collections.singleton(PacketType.Play.Client.HELD_ITEM_CHANGE);
     }
 }

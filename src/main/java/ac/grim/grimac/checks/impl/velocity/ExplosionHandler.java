@@ -16,8 +16,11 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.util.Vector;
 
+import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 @CheckData(name = "AntiExplosion", configName = "Explosion", setback = 10)
 public class ExplosionHandler extends Check implements PostPredictionCheck {
@@ -60,6 +63,11 @@ public class ExplosionHandler extends Check implements PostPredictionCheck {
                 event.getTasksAfterSend().add(player::sendTransaction);
             }
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Server> typesCheckedOnSend() {
+        return Collections.singleton(PacketType.Play.Server.EXPLOSION);
     }
 
     public VelocityData getFutureExplosion() {

@@ -13,6 +13,10 @@ import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientClickWindow;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerOpenWindow;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
 @CheckData(name = "CrashD", experimental = false)
 public class CrashD extends Check implements PacketCheck {
 
@@ -30,6 +34,11 @@ public class CrashD extends Check implements PacketCheck {
             this.type = MenuType.getMenuType(window.getType());
             if (type == MenuType.LECTERN) lecternId = window.getContainerId();
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Server> typesCheckedOnSend() {
+        return Collections.singleton(PacketType.Play.Server.OPEN_WINDOW);
     }
 
     @Override

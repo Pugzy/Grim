@@ -11,6 +11,10 @@ import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientPl
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientPlayerFlying;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerPlayerAbilities;
 
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.Set;
+
 // The client can send ability packets out of order due to Mojang's excellent netcode design.
 // We must delay the second ability packet until the tick after the first is received
 // Else the player will fly for a tick, and we won't know about it, which is bad.
@@ -73,5 +77,10 @@ public class PacketPlayerAbilities extends Check implements PacketCheck {
                 player.isFlying = abilities.isFlying();
             });
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Server> typesCheckedOnSend() {
+        return Collections.singleton(PacketType.Play.Server.PLAYER_ABILITIES);
     }
 }

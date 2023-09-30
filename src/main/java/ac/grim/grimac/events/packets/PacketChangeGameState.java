@@ -9,6 +9,9 @@ import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.protocol.player.GameMode;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerChangeGameState;
 
+import java.util.Collections;
+import java.util.Set;
+
 public class PacketChangeGameState extends Check implements PacketCheck {
     public PacketChangeGameState(GrimPlayer playerData) {
         super(playerData);
@@ -40,5 +43,10 @@ public class PacketChangeGameState extends Check implements PacketCheck {
                 });
             }
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Server> typesCheckedOnSend() {
+        return Collections.singleton(PacketType.Play.Server.CHANGE_GAME_STATE);
     }
 }
