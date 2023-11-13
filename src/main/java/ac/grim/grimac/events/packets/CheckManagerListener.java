@@ -228,7 +228,7 @@ public class CheckManagerListener extends PacketListenerAbstract {
                 PacketEvents.getAPI().getServerManager().getVersion().isOlderThan(ServerVersion.V_1_9)) {
             WrapperPlayClientPlayerBlockPlacement place = (WrapperPlayClientPlayerBlockPlacement) packet;
 
-            if (player.gamemode == GameMode.SPECTATOR || player.gamemode == GameMode.ADVENTURE) return;
+            if (player.gamemode == GameMode.SPECTATOR) return;
 
             if (place.getFace() == BlockFace.OTHER) {
                 ItemStack placedWith = player.getInventory().getHeldItem();
@@ -244,7 +244,7 @@ public class CheckManagerListener extends PacketListenerAbstract {
         if (packet instanceof WrapperPlayClientUseItem) {
             WrapperPlayClientUseItem place = (WrapperPlayClientUseItem) packet;
 
-            if (player.gamemode == GameMode.SPECTATOR || player.gamemode == GameMode.ADVENTURE) return;
+            if (player.gamemode == GameMode.SPECTATOR) return;
 
             ItemStack placedWith = player.getInventory().getHeldItem();
             if (place.getHand() == InteractionHand.OFF_HAND) {
@@ -299,7 +299,7 @@ public class CheckManagerListener extends PacketListenerAbstract {
             BlockFace face = place.getFace();
 
 
-            if (player.gamemode == GameMode.SPECTATOR || player.gamemode == GameMode.ADVENTURE) return;
+            if (player.gamemode == GameMode.SPECTATOR) return;
 
             ItemStack placedWith = player.getInventory().getHeldItem();
             if (place.getHand() == InteractionHand.OFF_HAND) {
