@@ -23,13 +23,13 @@ repositories {
     maven("https://repo.aikar.co/content/groups/aikar/") // ACF
     maven("https://nexus.scarsz.me/content/repositories/releases") // Configuralize
     maven("https://repo.opencollab.dev/maven-snapshots/") // Floodgate
-    maven("https://repo.codemc.io/repository/maven-snapshots/") // PacketEvents
+    maven("https://repo.codemc.io/repository/maven-releases/") // PacketEvents
     mavenCentral()
     // FastUtil, Discord-Webhooks
 }
 
 dependencies {
-    implementation("com.github.retrooper.packetevents:spigot:2.2.0")
+    implementation("com.github.retrooper.packetevents:spigot:2.2.1")
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     implementation("club.minnced:discord-webhooks:0.8.0")
     implementation("it.unimi.dsi:fastutil:8.5.9")
