@@ -8,6 +8,11 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.protocol.player.ClientVersion;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
+import com.google.common.collect.Lists;
+
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.Set;
 
 @CheckData(name = "BadPacketsH")
 public class BadPacketsH extends Check implements PacketCheck {
@@ -30,5 +35,13 @@ public class BadPacketsH extends Check implements PacketCheck {
 
             sentAnimation = false;
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Client> typesCheckedOnReceive() {
+        return EnumSet.copyOf(Lists.newArrayList(
+            PacketType.Play.Client.PLAYER_ABILITIES,
+            PacketType.Play.Client.INTERACT_ENTITY
+        ));
     }
 }

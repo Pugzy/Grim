@@ -65,4 +65,9 @@ public class BadPacketsO extends Check implements PacketCheck {
             }
         }
     }
+
+    @Override
+    public Set<PacketType.Play.Client> typesCheckedOnReceive() {
+        return Collections.singleton(PacketType.Play.Client.KEEP_ALIVE);
+    }
 }

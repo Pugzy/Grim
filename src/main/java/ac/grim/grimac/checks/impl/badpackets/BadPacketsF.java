@@ -8,6 +8,9 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientEntityAction;
 
+import java.util.Collections;
+import java.util.Set;
+
 @CheckData(name = "BadPacketsF")
 public class BadPacketsF extends Check implements PacketCheck {
     public boolean lastSprinting;
@@ -44,5 +47,10 @@ public class BadPacketsF extends Check implements PacketCheck {
                 lastSprinting = false;
             }
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Client> typesCheckedOnReceive() {
+        return Collections.singleton(PacketType.Play.Client.ENTITY_ACTION);
     }
 }

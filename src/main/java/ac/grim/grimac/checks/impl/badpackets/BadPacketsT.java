@@ -11,6 +11,9 @@ import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.protocol.player.ClientVersion;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
 
+import java.util.Collections;
+import java.util.Set;
+
 @CheckData(name = "BadPacketsT", experimental=true)
 public class BadPacketsT extends Check implements PacketCheck {
     public BadPacketsT(final GrimPlayer player) {
@@ -58,5 +61,10 @@ public class BadPacketsT extends Check implements PacketCheck {
                 flagAndAlert(verbose);
             });
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Client> typesCheckedOnReceive() {
+        return Collections.singleton(PacketType.Play.Client.INTERACT_ENTITY);
     }
 }

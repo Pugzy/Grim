@@ -8,6 +8,9 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientEntityAction;
 
+import java.util.Collections;
+import java.util.Set;
+
 @CheckData(name = "BadPacketsG")
 public class BadPacketsG extends Check implements PacketCheck {
     boolean wasTeleport;

@@ -7,6 +7,9 @@ import ac.grim.grimac.player.GrimPlayer;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 
+import java.util.Collections;
+import java.util.Set;
+
 @CheckData(name = "BadPacketsJ")
 public class BadPacketsJ extends Check implements PacketCheck {
     public BadPacketsJ(GrimPlayer player) {
@@ -20,5 +23,10 @@ public class BadPacketsJ extends Check implements PacketCheck {
                 flagAndAlert();
             }
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Client> typesCheckedOnReceive() {
+        return Collections.singleton(PacketType.Play.Client.STEER_VEHICLE);
     }
 }

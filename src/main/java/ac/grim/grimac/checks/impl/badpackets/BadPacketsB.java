@@ -8,6 +8,9 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientSteerVehicle;
 
+import java.util.Collections;
+import java.util.Set;
+
 @CheckData(name = "BadPacketsB")
 public class BadPacketsB extends Check implements PacketCheck {
     public BadPacketsB(GrimPlayer player) {
@@ -26,5 +29,10 @@ public class BadPacketsB extends Check implements PacketCheck {
                 flagAndAlert();
             }
         }
+    }
+
+    @Override
+    public Set<PacketType.Play.Client> typesCheckedOnReceive() {
+        return Collections.singleton(PacketType.Play.Client.STEER_VEHICLE);
     }
 }
